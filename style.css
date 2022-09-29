@@ -1,22 +1,24 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding:0;
-  
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 
-.navbar .first{
-    margin-left: 30px;
-}
-.navbar .second{
-    float: right; 
-    margin-right: 30px;
-}
-img{
-    height: 800px;
 }
 
-.final{
+.navbar .first {
+  margin-left: 30px;
+}
+
+.navbar .second {
+  float: right;
+  margin-right: 30px;
+}
+
+img {
+  height: 800px;
+}
+
+.final {
   display: grid;
   grid-template-columns: 800px 800px;
   margin-left: 100px;
@@ -24,17 +26,20 @@ img{
   gap: 100px;
   margin-bottom: 20px;
 }
-.gimage img{
+
+.gimage img {
   height: 250px;
   width: 250px;
 
 }
-.dimage img{
+
+.dimage img {
   height: 250px;
   width: 250px;
- 
+
 }
-.gtext{
+
+.gtext {
   width: 500px;
   font-size: 1.5rem;
   text-transform: uppercase;
@@ -42,7 +47,8 @@ img{
   text-align: center;
   padding-top: 20px;
 }
-.dtext{
+
+.dtext {
   width: 500px;
   font-size: 1.5rem;
   text-transform: uppercase;
@@ -50,7 +56,8 @@ img{
   text-align: center;
   padding-top: 20px;
 }
-.grocery{
+
+.grocery {
   display: flex;
   /* margin-left: 100px;
   margin-right: 100px; */
@@ -61,7 +68,8 @@ img{
   border-color: #c4d674;
   background-color: #c4d674;
 }
-.dryfruits{
+
+.dryfruits {
   display: flex;
   /* margin-left: 100px;
   margin-right: 100px; */
@@ -96,7 +104,7 @@ img{
   padding: 1.5rem 2.1rem;
   text-transform: uppercase;
 } */
-.btn{
+.btn {
   background-color: #eba834;
   border: none;
   color: white;
@@ -109,7 +117,33 @@ img{
   cursor: pointer;
   transition-duration: 0.4s;
 }
-.btn:hover{
+
+.btn:hover {
   background-color: #4CAF50;
   opacity: 0.9;
+}
+
+.box {
+  height: 10%;
+  width: 20%;
+  /* background-color: red; */
+
+}
+
+.a123 {
+  height: 70px;
+  width: 70px;
+}
+
+.contact {
+  display: inline-block;
+  /* background-color: red; */
+  height: 20%;
+  width: 20%;
+  position: relative;
+  top: 130px;
+}
+
+.reach {
+  display: inline-block;
 }
