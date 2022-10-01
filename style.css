@@ -68,6 +68,11 @@ img {
   border-color: #c4d674;
   background-color: #c4d674;
 }
+.xyz {
+height: 20rem;
+position: bottom;
+/* background-color : red; */
+}
 
 .dryfruits {
   display: flex;
@@ -142,8 +147,10 @@ img {
   width: 20%;
   position: relative;
   top: 130px;
+ 
 }
 
 .reach {
   display: inline-block;
+  
 }
