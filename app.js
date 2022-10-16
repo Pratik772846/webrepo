@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _=require('lodash');
-
+const mysql=require('mysql');
 const grocery = "GROCERY"
 const others ="OTHERS"
 const kitchen ="KITCHEN"
@@ -16,23 +16,71 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 let posts=[]
 
+const db = mysql.createConnection({
+  host:'localhost',
+  user:'root',
+  password:'',
+  database:'ecommerce'
+})
+db.connect((err)=>{
+  if(!err){
+      console.log('db connected');
+  }
+  else{
+      console.log(err);
+  }
+})
+
 app.get('/', function(req, res) {
   res.sendFile('views/index.html', {root: __dirname })
 });
 
+
+// app.get('/getposts',(req,res)=>{
+//   let sql = 'SELECT * FROM posts';
+//   let query = db.query(sql,(err,result)=>{
+//       if(err) throw err;
+//       console.log(result);
+//       res.send('posts fetched...');
+//   })
+// })
+
 app.get('/grocery',(req,res)=>{
-    res.render("grocery",{ grocery1: grocery});
+  let sql = 'SELECT * FROM products';
+  let query= db.query(sql,(err,result)=>{
+    res.render("grocery",{grocery1:grocery , result:result});
+  })
+    // res.render("grocery",{ grocery1: grocery});
 })
 
 app.get('/others',(req,res)=>{
   res.render("others",{ grocery1: others});
 })
 app.get('/kitchen',(req,res)=>{
-  res.render("kitchen",{ grocery1: kitchen});
+  let sql = 'SELECT * FROM products';
+  let query= db.query(sql,(err,result)=>{
+    res.render("kitchen",{grocery1:kitchen , result:result});
+  })
 })
 app.get('/confectionery',(req,res)=>{
   res.render("confectionery",{ grocery1: confectionery});
 })
+app.get('/adminpage',(req,res)=>{
+  res.sendFile('views/adminpage.html', {root: __dirname })
+})
+app.get('/adminform',(req,res)=>{
+  res.sendFile('views/forms/adminform.html', {root: __dirname })
+})
+app.get('/request',(req,res)=>{
+  res.sendFile('views/forms/request.html', {root: __dirname })
+})
+app.get('/signin',(req,res)=>{
+  res.sendFile('views/forms/signin.html', {root: __dirname })
+})
+app.get('/signup',(req,res)=>{
+  res.sendFile('views/forms/signup.html', {root: __dirname })
+})
+
 //  app.get('/',(req,res)=>{
 //   res.render("home",{homecontent:homeStartingContent,posts:posts});
 //   // console.log(posts);
