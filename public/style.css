@@ -20,7 +20,7 @@ img {
 
 .final {
   display: grid;
-  grid-template-columns: 800px 800px;
+  grid-template-columns: 650px 650px;
   margin-left: 100px;
   margin-right: 100px;
   gap: 100px;
@@ -71,7 +71,7 @@ img {
 .xyz {
 height: 20rem;
 position: bottom;
-/* background-color : red; */
+
 }
 
 .dryfruits {
