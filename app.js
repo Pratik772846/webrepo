@@ -4,11 +4,13 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _=require('lodash');
 const mysql=require('mysql');
+const dotenv = require('dotenv');
 const grocery = "GROCERY"
 const others ="OTHERS"
-const kitchen ="KITCHEN"
+const kitchen ="DAILY ESSENTIALS"
 const confectionery ="CONFECTIONERY"
 
+dotenv.config({path : './.env'});
 const app = express();
 app.set('view engine', 'ejs');
 
@@ -46,24 +48,29 @@ app.get('/', function(req, res) {
 // })
 
 app.get('/grocery',(req,res)=>{
-  let sql = 'SELECT * FROM products';
+  let sql = 'SELECT * FROM products WHERE type="grocery"';
   let query= db.query(sql,(err,result)=>{
     res.render("grocery",{grocery1:grocery , result:result});
   })
-    // res.render("grocery",{ grocery1: grocery});
 })
 
 app.get('/others',(req,res)=>{
-  res.render("others",{ grocery1: others});
+  let sql = 'SELECT * FROM products WHERE type="others"';
+  let query= db.query(sql,(err,result)=>{
+    res.render("others",{grocery1:others , result:result});
+  })
 })
 app.get('/kitchen',(req,res)=>{
-  let sql = 'SELECT * FROM products';
+  let sql = 'SELECT * FROM products WHERE type="DE"';
   let query= db.query(sql,(err,result)=>{
     res.render("kitchen",{grocery1:kitchen , result:result});
   })
 })
 app.get('/confectionery',(req,res)=>{
-  res.render("confectionery",{ grocery1: confectionery});
+  let sql = 'SELECT * FROM products WHERE type="confectionary"';
+  let query= db.query(sql,(err,result)=>{
+    res.render("confectionery",{grocery1:confectionery , result:result});
+  })
 })
 app.get('/adminpage',(req,res)=>{
   res.sendFile('views/adminpage.html', {root: __dirname })
@@ -80,21 +87,13 @@ app.get('/signin',(req,res)=>{
 app.get('/signup',(req,res)=>{
   res.sendFile('views/forms/signup.html', {root: __dirname })
 })
+app.get('/allrequests',(req,res)=>{
+  res.render("requests");
+})
+app.get('/orders',(req,res)=>{
+  res.render("orders");
+})
 
-//  app.get('/',(req,res)=>{
-//   res.render("home",{homecontent:homeStartingContent,posts:posts});
-//   // console.log(posts);
-//  })
-//  app.get('/about',(req,res)=>{
-//   res.render("about",{aboutcontent : aboutContent});
-//   // res.render("ejs file name",{key:value});
-//  })
-//  app.get('/contact',(req,res)=>{
-//   res.render("contact",{contact:contactContent});
-//  })
-//  app.get('/compose',(req,res)=>{
-//   res.render("compose");
-//  })
 //  app.get('/posts/:id',(req,res)=>{
 //   let id =_.lowerCase(req.params.id);
 //   for(let i=0;i<posts.length;i++){

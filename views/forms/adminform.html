@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADD NEW ITEM</title>
+    <title>Admin</title>
     <style>
         * {
             margin: 0;
@@ -15,7 +15,7 @@
             display: flex;
             /* background-color : red; */
             width: 100%;
-            height: 62.7rem;
+            height: 45.7rem;
             background-repeat: no-repeat;
             justify-content: center;
             align-items: center;
@@ -37,7 +37,7 @@
             /* Green */
             border: none;
             width: 7rem;
-            color: #eaeaea;
+            color: #C3F8FF;
             padding: 20px;
             text-align: center;
             text-decoration: none;
@@ -57,7 +57,7 @@
         }
 
         .image {
-            background-image: url("./b.jpeg");
+            background-image: url("./b.jpg");
             height: 650px;
             width: 25rem;
             border-bottom-left-radius: 2rem;
@@ -88,7 +88,7 @@
         .fcont {
 
 
-            background-color: #fdebf3;
+            background-color: #C3F8FF;
             width: 25rem;
             height: 650px;
             /* border-radius: 2rem; */
@@ -96,7 +96,7 @@
             border-top-right-radius: 2rem;
         }
 
-        .Description {
+        .discription {
             height: 3rem;
         }
     </style>
@@ -107,33 +107,38 @@
         <div class="image"></div>
         <div class="fcont">
             <form action="form.html" class="form" method="POST">
-                <div class="one"> <label for="name">Item Name</label>
+                <div class="one"> <label for="name">ItemName</label>
+                    <br>
                     <input type="text" name="name" id="name" placeholder="Enter name of item">
                 </div>
-                <div class="two"><label for="Description">Description</label>
-                    <input type="email" class="Description" name="email" id="email"
-                        placeholder="Description of your item">
+                <div class="two"><label for="text">Discription</label>
+                    <br>
+                    <input type="email" class="discription" name="email" id="email"
+                        placeholder="Discription of your item">
                 </div>
-                <div class="one"> <label for="price">Price</label>
-                    <input type="number" name="price" id="name" placeholder="Enter price of item">
+                <div class="one"> <label for="name">Price</label>
+                    <br>
+                    <input type="number" name="name" id="name" placeholder="Enter price of item">
                 </div>
 
-                <div class="three"><label for="type">ItemType</label>
+                <div class="three"><label for="password">ItemType</label>
                     <br>
-                    <select id="cars" name="type" class="">
-                        <option value="others">Others</option>
+                    <select id="cars" name="cars" class="">
+                        <option value="volvo">Others</option>
+
                         <option value="kitchen">kitchen</option>
                         <option value="grocery">Grocery</option>
-                        <option value="Confectionery">Confectionery</option>
+                        <option value="lectronics">Electronics</option>
+                        <option value="confectonary">Confectonary</option>
                     </select>
                 </div>
-                <div class="one"> <label for="filename">Image</label>
+                <div class="one"> <label for="imagename">Image</label>
                     <input type="file" id="myFile" name="filename">
                 </div>
 
 
                 <input type="submit" class="button" value="Submit">
-                </form>
+
 
 
         </div>
