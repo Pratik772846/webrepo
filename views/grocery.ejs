@@ -1,6 +1,6 @@
 <%- include("partials/header") %>
 
-<h2 style="margin-top: 60px; margin-left: 770px;"><%= grocery1 %></h2>
+<h2 style="margin-top: 150px; margin-left: 770px;"><%= grocery1 %></h2>
 
 <div class="row" style="margin-top:10px ;margin-left:40px; margin-right:40px;">
    <!-- filter part starts -->
@@ -25,7 +25,7 @@
               <div class="card-body">
                 <h5 class="card-title"><%=result[item].name %></h5>
                 <p class="card-text"><%=result[item].description %></p>
-                <b style="display:inline ;"><%= result[item].price %></b>
+                <b style="display:inline ;"> $<%= result[item].price %> Only!</b>
                 <a href="#" class="btn btn-primary" style="float: right;">Add to cart</a>
               </div>
             </div>  
@@ -44,7 +44,7 @@
             <div class="card-body">
               <h5 class="card-title"><%=result[item].name %></h5>
               <p class="card-text"><%=result[item].description %></p>
-              <b style="display:inline ;"><%= result[item].price %></b>
+              <b style="display:inline ;">$<%= result[item].price %> Only!</b>
               <a href="#" class="btn btn-primary" style="float: right;">Add to cart</a>
             </div>
           </div>  
