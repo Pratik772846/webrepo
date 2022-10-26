@@ -1,0 +1,62 @@
+<!-- <h1>hello</h1> -->
+
+<%- include("partials/header") %>
+
+
+<h2 style="margin-top: 150px; text-align: center;"><%= grocery1 %></h2>
+
+<%if(cart.length==0){%>
+    <h1 style="text-align: center;">YOUR CART IS EMPTY</h1>
+<% }else { %>
+
+    <div style="display: flex;">
+   <div class="col-md-6">
+    <% for(let item=0;item<cart.length;item++){ %>
+        <table>
+            <tr>
+                <th>Product</th>
+                
+                <th>price</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td><%= cart[item].name %></td>
+                
+                <td><%= cart[item].price %></td>
+                <td>
+                    <div class="quantity"> 
+                        <form  action="/edit-product-quantity" method="post"> 
+                            <input type="hidden" value="<%= cart[item].pid %>" name="id"> 
+                            <input type="submit" value="-" class="edit btn" name="decrease_quantity" onclick="decrease(event);"> 
+                            <input type="text" name="quantity" value="<%= cart[item].quantity %>" readonly> 
+                            <input type="submit" value="+" class="edit btn" name="increase_quantity" onclick="increase(event);"> 
+                        </form> 
+                            <span class="product-price">$ <%=cart[item].price * cart[item].quantity %></span> 
+                        </div>  
+                </td>
+                
+            </tr>
+        </table>
+       <% } %>
+   </div>
+   <div class="col-md-6">
+    <table style="text-align:center ; margin: auto;">
+        
+            <td>SUBTOTAL</td>
+            <td>$5000</td>
+        </tr>
+        <tr>
+            <td>SHIPPING</td>
+            <td>FREE</td>
+        </tr>
+        <tr>
+            <td>TOTAL</td>
+            <td>$5500</td>
+    </table>
+   
+    <button style="float:right ; margin-right:30px;">CHECKOUT</button>
+
+   </div>
+    </div>
+<%}%>
+<%- include("partials/footer") %>

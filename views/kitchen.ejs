@@ -22,7 +22,14 @@
                 <h5 class="card-title"><%=result[item].name.toUpperCase() %></h5>
                 <p class="card-text"><%=result[item].description %></p>
                 <b style="display:inline ;"> $<%= result[item].price %>Only!</b>
-                <a href="#" class="btn btn-primary" style="float: right;">Add to cart</a>
+                <form action="/add_to_cart" method="post">
+                  <input type="hidden" name="pid" value="<%= result[item].pid %>">
+                  <input type="hidden" name="name" value="<%= result[item].name %>">
+                  <input type="hidden" name="description" value="<%= result[item].description %>">
+                  <input type="hidden" name="price" value="<%= result[item].price %>">
+                  <input type="hidden" name="quantity" value="1">
+                  <input type="submit" value="Add to Cart" style="float: right;" class="btn btn-primary">
+                </form>
               </div>
             </div>  
            <% } %>
@@ -38,7 +45,14 @@
                 <h5 class="card-title"><%=result[item].name.toUpperCase() %></h5>
                 <p class="card-text"><%=result[item].description %></p>
                 <b style="display:inline ;"> $<%= result[item].price %>Only!</b>
-                <a href="#" class="btn btn-primary" style="float: right;">Add to cart</a>
+                <form action="/add_to_cart" method="post">
+                  <input type="hidden" name="pid" value="<%= result[item].pid %>">
+                  <input type="hidden" name="name" value="<%= result[item].name %>">
+                  <input type="hidden" name="description" value="<%= result[item].description %>">
+                  <input type="hidden" name="price" value="<%= result[item].price %>">
+                  <input type="hidden" name="quantity" value="1">
+                  <input type="submit" value="Add to Cart" style="float: right;" class="btn btn-primary">
+                </form>
               </div>
             </div>  
            <% } %>
