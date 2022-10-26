@@ -99,7 +99,6 @@ app.get('/orders',(req,res)=>{
   res.render("orders");
 })
 
-// cart=[]
 // add to cart functionality
 function isProductInCart(cart,pid){
   for(let i=0;i<cart.length;i++){
@@ -127,6 +126,10 @@ app.post('/add_to_cart',(req,res)=>{
   var quantity = req.body.quantity;
   var product ={pid:pid, name:name ,quantity :quantity, description:description, price:price};
 
+  // if(req.session.cart.length ==0){
+  //   res.send('Your Cart is Empty...');
+  // }
+  // else{
   if(req.session.cart){
     var cart = req.session.cart;
     if(!isProductInCart(cart,pid)){
@@ -138,32 +141,14 @@ app.post('/add_to_cart',(req,res)=>{
     } 
    // calculate total
   calculateTotal(cart,req);
-
-  // // return to cart page
-  // res.redirect('/cart');
-  // }
-  // // calculate total
-  // calculateTotal(cart,req);
-
-  // // return to cart page
-  // res.redirect('/cart');
-
-  // cart.push(product);
-  // console.log(product);
-  // console.log(cart);
-  // res.render('/cart',{cart:cart});
-  // calculateTotal(cart,req);
-  // console.log(cart);
   res.redirect('/cart');
-  
+  // }
 });
 const mycart="YOUR CART";
 app.get('/cart',(req,res)=>{
   var cart = req.session.cart;
   var total = req.session.total;
   res.render('cart',{cart:cart,total:total});
-  // res.render('cart',{cart:cart,grocery1:mycart,total:total});
-  // res.render('cart',{cart:cart,grocery1:mycart});
 })
 
 app.post('/remove_product',(req,res)=>{
@@ -209,6 +194,68 @@ app.post('/edit_product_quantity',(req,res)=>{
   calculateTotal(cart,req);
   res.redirect('/cart');
 })
+
+app.get('/checkout',(req,res)=>{
+  var total = req.session.total;
+  res.render('checkout',{total:total});
+})
+
+app.post('/place_order',(req,res)=>{
+  var name = req.body.name;
+  var phone = req.body.phone;
+  var hall = req.body.hall;
+  var room = req.body.room;
+  var total = req.session.total;
+  var productid="";
+  var quantity ="";
+  var cart= req.session.cart;
+  for(let i=0;i<cart.length;i++){
+    productid= productid + "," + cart[i].pid;
+    quantity = quantity + "," + cart[i].quantity;
+  }
+  console.log(productid);
+  console.log(quantity);
+  console.log(name);
+  console.log(total);
+  let post={name:name, hall:hall,room :room, productid:productid,quantity:quantity};
+  let sql = 'INSERT INTO orders SET ?';
+    let query = db.query(sql,post,(err,result)=>{
+        if(err) throw err;
+        console.log(result);
+        res.send('your order has been placed sucessfully....');
+    })
+});
+
+app.post('/add_item',(req,res)=>{
+  var name= req.body.name;
+  var price = req.body.price;
+  var description = req.body.description;
+  var type= req.body.type;
+  console.log(name);
+  console.log(price);
+  console.log(type);
+  let post={name:name, price:price, description:description, type:type};
+  let sql = 'INSERT INTO products SET ?';
+    let query = db.query(sql,post,(err,result)=>{
+        if(err) throw err;
+        console.log(result);
+        res.send('your item has been added sucessfully....');
+    })
+})
+
+
+// insert post
+// app.get('/addpost1',(req,res)=>{
+//   let post={title:'post one',body:'this is post number one'}
+//   let sql = 'INSERT INTO posts SET ?';
+//   let query = db.query(sql,post,(err,result)=>{
+//       if(err) throw err;
+//       console.log(result);
+//       res.send('post 1 added...');
+//   })
+// })
+
+
 //  app.get('/posts/:id',(req,res)=>{
 //   let id =_.lowerCase(req.params.id);
 //   for(let i=0;i<posts.length;i++){
