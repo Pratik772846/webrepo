@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Sign Up</title>
     <style>
         * {
             margin: 0;
@@ -36,7 +36,7 @@
             background-color: #431953;
             /* Green */
             border: none;
-            width: 7rem;
+            width: 6rem;
             color: #C3F8FF;
             padding: 20px;
             text-align: center;
@@ -74,17 +74,6 @@
             margin-left: 3.4rem;
         }
 
-        select {
-            background-color: white;
-            font-size: medium;
-            border-radius: 12px;
-            border: none;
-            /* margin-right: 2%; */
-            /* height :25px; */
-            padding: 0.3rem;
-            margin-left: 3.4rem;
-        }
-
         .fcont {
 
 
@@ -95,51 +84,62 @@
             border-bottom-right-radius: 2rem;
             border-top-right-radius: 2rem;
         }
-
-        .discription {
-            height: 3rem;
-        }
     </style>
+    {{!--
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    --}}
 </head>
 
 <body>
     <div class="class">
         <div class="image"></div>
         <div class="fcont">
-            <form action="/add_item" class="form" method="POST">
-
-                <div class="one"> <label for="name">ItemName</label>
+            <form action="/auth/signup" class="form" method="post">
+                <div class="one"> <label for="name">Name</label>
                     <br>
-                    <input type="text" name="name" id="name" placeholder="Enter name of item">
+                    <input type="text" name="name" id="name" placeholder="Enter your name" required="">
+                </div>
+                <div class="two"><label for="email">Email</label>
+                    <br>
+                    <input type="email" name="email" id="email" placeholder="Enter your email" required="">
+                </div>
+                <div class="three"><label for="password">Password</label>
+                    <br>
+
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required="">
+                </div>
+                <div class="one"> <label for="address">Address</label>
+                    <br>
+                    <input type="text" name="address" id="address" placeholder="Enter your address" required="">
                 </div>
 
-                <div class="two"><label for="text">Description</label>
+                <div class="four"><label for="password">Confirm Password</label>
                     <br>
-                    <input type="text" class="description" name="description" id="email"
-                        placeholder="Description of your item">
+                    <input type="password" name="confirmpassword" id="confirmpassword"
+                        placeholder="Confirm your password" required="">
                 </div>
+                <input type="submit" class="button" value="Sign up">
 
-                <div class="one"> <label for="name">Price</label>
-                    <br>
-                    <input type="number" name="price" id="name" placeholder="Enter price of item">
-                </div>
+                <% if (<%= message %>) { %>
+                    <h4 class="aleart alert-danger" style="color: rgb(219, 0, 0);">
+                        <%= message %>
+                    </h4>
+                    <% } %>
 
-                <div class="three"><label for="password">ItemType</label>
-                    <br>
-                    <select id="cars" name="type" class="">
-                        <option value="others">others</option>
-                        <option value="DE">DE</option>
-                        <option value="grocery">grocery</option>
-                        <option value="confectionary">confectionary</option>
-                    </select>
-                </div>
-
-                <!-- <div class="one"> <label for="imagename">Image</label>
-                    <input type="file" id="myFile" name="filename">
-                </div> -->
-                <input type="submit" class="button" value="Submit">
-        </form>
         </div>
+
+
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
