@@ -1,0 +1,52 @@
+<%- include('./partials/header.ejs') %> 
+  
+     <h1 style="text-align:center;font-size: 30px; font-weight:700;">Shopping Cart</h1> 
+    <div class="cart" style="margin-top:100px ;"> 
+     <% cart.forEach(item =>{ %> 
+  
+   <div class="cart-inner">       
+ <div class="cart-content"> 
+ <p class="cart-name"> <%= item.name %></p> 
+ <p class="price-cart"> <span>$</span> <%=item.price %> </p> 
+ <p> <%= item.quantity %></p>
+  
+  
+  
+ <div class="quantity">  
+    
+    <form  action="/edit_product_quantity" method="post"> 
+        <input type="hidden" value="<%= item.pid %>" name="pid"> 
+        <input type="submit" value="-" class="edit-btn" name="decrease_quantity" > 
+        <input type="text" name="quantity" value="<%= item.quantity %>" readonly> 
+        <input type="submit" value="+" class="edit-btn" name="increase_quantity"  > 
+     
+    </form> 
+         
+         <span class="product-price">$ <%=item.price * item.quantity %></span> 
+    
+     </div>  
+     <form action="/remove_product" method="post"> 
+        <input type="hidden" name="pid" value="<%= item.pid%>"> 
+        
+        <input type="submit" name="remove_btn" class="remove-btn" value="remove" pid="remove"> 
+         
+    </form> 
+      
+   </div> 
+     </div> 
+  
+     
+     <%  }) %> 
+    </div> 
+         <div style="margin: 20px 100px; display: flex; justify-content: space-between; align-items: center;"> 
+            <div style="display: flex;">  
+                 <h1 style="font-size: 35px; font-weight:700; margin-right: 20px; ">Total: </h1> 
+                 <h4 style="color: red; font-size:35px; font-weight:800;"> $<%= total %></h4> 
+             </div> 
+             <a href="#" class="checkout-btn">Checkout</a> 
+         </div> 
+  
+      
+    
+         <%- include('./partials/footer.ejs') %>
+
