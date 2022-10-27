@@ -1,0 +1,37 @@
+<%- include('./partials/header1.ejs') %>
+<table style="margin-top: 130px;">
+  <tr >
+    <th>customer name</th>
+    <th>hall no</th>
+    <th>room no</th>
+    <th>product ids</th>
+    <th>quantity</th>
+    <th>total amount</th>
+    <th>remove</th>
+  </tr>
+
+  <% for(let item=0;item<result.length;item++){ %>
+    <!-- <div class="card" style=" width: 25rem ;  margin: auto; margin-bottom: 20px; ">
+      <div class="card-body"> -->
+
+        <tr >
+          <td> <%=result[item].name %> </td>
+          <td> <%=result[item].hall %> </td>
+          <td> <%=result[item].room %> </td>
+          <td> <%=result[item].productid %>  </td>
+          <td> <%=result[item].quantity %> </td>
+          <td> $<%= result[item].total %> Only! </td>
+          <td>
+            <form action="/order_done" method="post">
+            <input type="hidden" name="oid" value="<%= result[item].oid%>" />
+            <input type="submit"name="remove_btn"class="remove-btn"value="remove"pid="remove"/>
+          </form>
+        </td>
+        </tr>
+        
+
+
+      <!-- </div>
+    </div>   -->
+   <% } %>
+</table>

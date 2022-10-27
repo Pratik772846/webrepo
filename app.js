@@ -210,19 +210,23 @@ app.post('/place_order',(req,res)=>{
   var quantity ="";
   var cart= req.session.cart;
   for(let i=0;i<cart.length;i++){
-    productid= productid + "," + cart[i].pid;
-    quantity = quantity + "," + cart[i].quantity;
+    productid= productid + " " + cart[i].pid;
+    quantity = quantity + " " + cart[i].quantity;
   }
   console.log(productid);
   console.log(quantity);
   console.log(name);
   console.log(total);
-  let post={name:name, hall:hall,room :room, productid:productid,quantity:quantity};
+  let post={name:name, hall:hall,room :room, productid:productid,quantity:quantity,total:total};
   let sql = 'INSERT INTO orders SET ?';
     let query = db.query(sql,post,(err,result)=>{
         if(err) throw err;
         console.log(result);
-        res.send('your order has been placed sucessfully....');
+        req.session.destroy((err) => {
+          // res.redirect('/') 
+          res.send('your order has been placed sucessfully....');
+        })
+        // res.send('your order has been placed sucessfully....');
     })
 });
 
@@ -243,17 +247,21 @@ app.post('/add_item',(req,res)=>{
     })
 })
 
+app.get('/orders1',(req,res)=>{
+    let sql = 'SELECT * FROM orders';
+    let query = db.query(sql,(err,result)=>{
+        res.render("orders1",{result:result});
+    })
+})
 
-// insert post
-// app.get('/addpost1',(req,res)=>{
-//   let post={title:'post one',body:'this is post number one'}
-//   let sql = 'INSERT INTO posts SET ?';
-//   let query = db.query(sql,post,(err,result)=>{
-//       if(err) throw err;
-//       console.log(result);
-//       res.send('post 1 added...');
-//   })
-// })
+app.post('/order_done',(req,res)=>{
+  let sql = `DELETE FROM orders WHERE oid=${req.body.oid}`;
+    let query = db.query(sql,(err,result)=>{
+        res.redirect('/orders1');
+    })
+})
+
+
 
 
 //  app.get('/posts/:id',(req,res)=>{
